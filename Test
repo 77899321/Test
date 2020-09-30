@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+
+        android:id="@+id/eT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите вашу ФИО"></EditText>
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:text="сохранить"></Button>
+
+</LinearLayout>
+ 
+ КНОПКИ!!!
+ package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+        TextView text;
+        Button save;
+        EditText eT;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        text = findViewById(R.id.text);
+        save = findViewById(R.id.save);
+        eT = findViewById(R.id.eT);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(eT.getText().toString().length()<10) {
+                    Toast.makeText(getApplicationContext(),"Введите ФИО Полностью!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if (eT.getText().toString().length()>50){
+                    Toast.makeText(getApplicationContext(),"Вы ввели превышающее количество символов!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                text.setText(eT.getText().toString());
+            }
+        });
+
+
+    }
+
+}
+
